@@ -9,15 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('products')->get();
+        $categories = Category::whereNull('parent_id')->withCount('products')->get();
         
         $featuredProducts = Product::with('category')
-        ->where(function($q) {
-        $q->where('libelle', 'like', '%93E%')
-          ->orWhere('libelle', 'like', '%93T%')
-          ->orWhere('libelle', 'like', '%93PM%')
-          ->orWhere('libelle', 'like', '%93PS%');
-    })
+    ->where('featured', true)
     ->limit(8)
     ->get();
 

@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::with('products')->get();
         $marques = Product::whereNotNull('marque')->distinct()->pluck('marque')->sort()->values();
         $query = Product::with('category');
 
@@ -26,15 +26,30 @@ class ProductController extends Controller
             $query->search($request->q);
         }
 
-        $products = $query->paginate(16)->withQueryString();
+        $products = $query->latest()->paginate(100)->withQueryString();
 
-        return view('products.index', compact('products', 'categories', 'marques'));
+        $categoriesAvecMarques = Product::whereNotNull('marque')
+            ->whereNotNull('category_id')
+            ->select('category_id', 'marque')
+            ->distinct()
+            ->get()
+            ->groupBy('category_id')
+            ->map(fn($items) => $items->pluck('marque')->unique()->values());
+
+        // 👇 Ajout du nom de la catégorie
+        $categoryName = null;
+        if ($request->filled('category')) {
+            $categoryName = Category::find($request->category)?->name;
+        }
+
+        return view('products.index', compact('products', 'categories', 'marques', 'categoriesAvecMarques', 'categoryName'));
     }
 
     public function show(Product $product)
     {
         $related = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
+            ->latest()
             ->take(4)
             ->get();
 
@@ -51,5 +66,14 @@ class ProductController extends Controller
             ->withQueryString();
 
         return view('products.index', compact('products', 'categories', 'marques'));
+    }
+
+    public function categoriesByMarque(Request $request)
+    {
+        $categories = Category::whereHas('products', function ($q) use ($request) {
+            $q->where('marque', $request->marque);
+        })->get();
+
+        return response()->json($categories);
     }
 }

@@ -91,9 +91,13 @@
                                    placeholder="Ex: Tour, Rack..."
                                    style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13px;font-family:'Sora',sans-serif">
                         </div>
-
+                          
                     </div>
                 </div>
+                <label class="flex items-center gap-2 mt-4">
+    <input type="checkbox" name="featured" value="1">
+    Produit en vedette
+</label>
 
                 {{-- Image --}}
                 <div style="margin-bottom:16px;margin-top:16px">

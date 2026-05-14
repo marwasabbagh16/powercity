@@ -38,11 +38,13 @@
                 <div style="margin-bottom:16px">
                     <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px">Catégorie *</label>
                     <select name="category_id" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13px;font-family:'Sora',sans-serif">
-                        <option value="">-- Choisir une catégorie --</option>
-                        @foreach($categories as $cat)
-                        <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
+                           <option value="" style="color:#333">-- Choisir une catégorie --</option>
+    @foreach($categories as $cat)
+    <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }} style="color:#333; background:white">
+        {{ $cat->name }}
+    </option>
+    @endforeach
+</select>
                     @error('category_id')<div style="color:#ef4444;font-size:11px;margin-top:4px">{{ $message }}</div>@enderror
                 </div>
 
@@ -96,7 +98,10 @@
                     <input type="file" name="datasheet" accept=".pdf"
                            style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13px;font-family:'Sora',sans-serif">
                 </div>
-
+                <label class="flex items-center gap-2 mt-4">
+                    <input type="checkbox" name="featured" value="1">
+                         Produit en vedette
+                    </label>
                 <div style="display:flex;gap:10px">
                     <button class="btn btn-green" type="submit">💾 Créer le produit</button>
                     <a href="{{ route('admin.products') }}" class="btn btn-outline">Annuler</a>

@@ -7,7 +7,7 @@
 {{-- ===== HERO ===== --}}
 <section class="relative overflow-hidden" style="min-height: 350px;">
  
-    {{{-- BACKGROUND --}}
+    {{-- BACKGROUND --}}
      <div class="absolute inset-0">
     <img src="{{ asset('images/background.png') }}"
          alt="background"
@@ -54,7 +54,7 @@
             {{-- PREUVE SOCIALE --}}
             <div class="flex flex-wrap gap-6 mt-6 text-xs text-blue-200">
                 <div>+120 entreprises accompagnées</div>
-                <div>+20 000 références</div>
+                
                 <div>Livraison partout au Maroc</div>
             </div>
  
@@ -72,42 +72,38 @@
     </div>
 </section>
  
-{{-- ===== CATÉGORIES ===== --}}
-<section class="max-w-7xl mx-auto px-4 py-16">
-    <div class="flex items-end justify-between mb-10">
-        <div>
-            <span class="text-sm font-semibold uppercase tracking-widest" style="color:#4caf50">Nos spécialités</span>
-            <h2 class="text-3xl font-black mt-1" style="color:#0d2b45">Catégories de produits</h2>
+{{-- ===== À PROPOS ===== --}}
+<section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+        <h2 class="font-black mb-8" style="font-size:clamp(1.6rem,3vw,2.4rem); color:#0d2b45; line-height:1.25;">
+            PowerCity : Votre partenaire en matière de<br>protection électrique au Maroc
+        </h2>
+
+        <div class="text-left space-y-4 mb-10" style="color:#444; font-size:0.97rem; line-height:1.85;">
+            <p>PowerCity est une société spécialisée dans la fourniture d'onduleurs UPS de la marque EATON, câbles électriques, équipements de protection et solutions d'automatisation industrielle.</p>
+            <p>Nous offrons des solutions de protection d'équipements et de distribution d'énergie électrique au Maroc.</p>
+            <p>Nous sommes un revendeur agréé de la marque Eaton au Maroc et distributeur de grandes marques internationales : Schneider Electric, ABB, Siemens.</p>
+            <p>Nous proposons une large gamme de produits et services de haute qualité pour répondre aux besoins des entreprises de toutes tailles.</p>
+            <p>Nos onduleurs Eaton et équipements de protection protègent vos installations électriques des perturbations et des coupures de courant. Nous offrons également des solutions personnalisées pour répondre à vos besoins spécifiques.</p>
+            <p>Contactez-nous aujourd'hui pour en savoir plus sur nos produits et services.</p>
         </div>
-        <a href="{{ route('products.index') }}" class="text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" style="color:#0a5c8a">
-            Tout voir <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-    </div>
- 
-    @php
-    $catIcons  = ['battery-charging', 'cable', 'shield', 'toggle-right', 'cpu', 'grid-3x3'];
-    $catColors = ['#dbeafe', '#dcfce7', '#fee2e2', '#f3e8ff', '#ffedd5', '#e0f2fe'];
-    $catText   = ['#1d4ed8', '#15803d', '#dc2626', '#7c3aed', '#ea580c', '#0369a1'];
-    @endphp
- 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        @foreach($categories as $i => $cat)
-        <a href="{{ route('categories.show', $cat->id) }}"
-           class="card-lift bg-white border border-gray-100 rounded-xl p-5 text-center group shadow-sm">
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform"
-                 style="background:{{ $catColors[$i] ?? '#f3f4f6' }}">
-                <i data-lucide="{{ $catIcons[$i] ?? 'box' }}" class="w-7 h-7" style="color:{{ $catText[$i] ?? '#374151' }}"></i>
-            </div>
-            <div class="font-bold text-sm leading-tight" style="color:#0d2b45">{{ $cat->name }}</div>
-        </a>
-        @endforeach
+
+        <div class="flex justify-end">
+            <a href="{{ route('contact') }}"
+               class="font-semibold px-8 py-3 rounded-lg text-white transition hover:opacity-90"
+               style="background:#4caf50; font-size:0.95rem;">
+                Contactez-nous
+            </a>
+        </div>
+
     </div>
 </section>
 
  {{-- ===== PRODUITS ===== --}}
 <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-black mb-10">Produits phares</h2>
+        <h2 class="text-3xl font-black mb-10">Nos Produits</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             @foreach($featuredProducts as $product)
@@ -116,7 +112,7 @@
 
                 <div class="h-44 flex items-center justify-center bg-gray-50">
                     @if($product->image)
-                        <img src="{{ asset($product->image) }}"
+                        <img src="{{ Str::startsWith($product->image, 'images/') ? asset($product->image) : asset('storage/' . $product->image) }}"
                              alt="{{ $product->libelle }}"
                              class="max-h-36 max-w-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
                     @else
@@ -126,7 +122,6 @@
 
                 <div class="p-4">
                     <h3 class="font-semibold text-sm mb-2">{{ $product->libelle }}</h3>
-                    <span class="text-xs text-gray-500 font-medium">Prix sur devis</span>
                 </div>
 
             </a>
@@ -167,23 +162,25 @@
 </section>
  
 {{-- ===== CTA ===== --}} 
-<section class="py-14" style="background:linear-gradient(#0d2b45)"> 
-    <div class="max-w-4xl mx-auto px-4"> 
-        <div class="bg-white/10 border border-white/20 rounded-2xl p-10 text-center text-white">
-             <i data-lucide="zap" class="w-10 h-10 mx-auto mb-4" style="color:#4caf50">
-             </i>
-              <h2 class="text-3xl font-black mb-3">Besoin d'un devis ou d'un conseil ?</h2> 
-              <p class="text-blue-100 mb-8 max-w-xl mx-auto">
-                Notre équipe d'experts est disponible pour vous accompagner dans le choix des meilleures solutions énergétiques pour votre projet.</p> 
-                <div class="flex flex-wrap justify-center gap-3"> 
-                    <a href="{{ route('contact') }}" class="font-semibold px-8 py-3 rounded-lg transition text-white" style="background:#4caf50"> 
-                        Demander un devis </a> 
-                        <a href="{{ route('products.index') }}" class="bg-white/10 hover:bg-white/20 border border-white/30 font-semibold px-8 py-3 rounded-lg transition text-white">
-                             Explorer le catalogue </a>
-                             </div>
-                             </div>
-                             </div> 
-                        </section>
+<section class="py-14">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-10 text-center text-white" style="background:#0d2b45">
+            <i data-lucide="zap" class="w-10 h-10 mx-auto mb-4" style="color:#4caf50"></i>
+            <h2 class="text-3xl font-black mb-3">Besoin d'un devis ou d'un conseil ?</h2>
+            <p class="text-blue-100 mb-8 max-w-xl mx-auto">
+                Notre équipe d'experts est disponible pour vous accompagner dans le choix des meilleures solutions énergétiques pour votre projet.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="{{ route('contact') }}" class="font-semibold px-8 py-3 rounded-lg transition text-white" style="background:#4caf50">
+                    Demander un devis
+                </a>
+                <a href="{{ route('products.index') }}" class="bg-white/10 hover:bg-white/20 border border-white/30 font-semibold px-8 py-3 rounded-lg transition text-white">
+                    Explorer le catalogue
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
  
 {{-- ===== WHATSAPP FLOAT ===== --}}
 <div class="fixed bottom-6 left-6 z-50">

@@ -57,6 +57,7 @@ class ProductAdminController extends Controller
         'puissance'     => $request->puissance,
         'rendement'     => $request->rendement,
         'configuration' => $request->configuration,
+        'featured' => $request->has('featured'),
          ];
 
         // Upload image
@@ -107,7 +108,9 @@ public function store(Request $request)
         'puissance'     => $request->puissance,
         'rendement'     => $request->rendement,
         'configuration' => $request->configuration,
+        'featured' => $request->has('featured'),
     ];
+    
 
     if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('products', 'public');

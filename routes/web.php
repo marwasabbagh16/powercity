@@ -17,6 +17,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Produits
 Route::get('/produits', [ProductController::class, 'index'])->name('products.index');
 Route::get('/produits/recherche', [ProductController::class, 'search'])->name('products.search');
+Route::get('/produits/categories-by-marque', [ProductController::class, 'categoriesByMarque'])->name('products.categoriesByMarque'); // 👈 avant {product}
 Route::get('/produits/{product}', [ProductController::class, 'show'])->name('products.show');
 
 // Catégories
@@ -43,20 +44,17 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/devis/{devis}', [DevisController::class, 'show'])->name('devis.show');
     Route::get('/clients', [ClientController::class, 'index'])->name('clients');
     Route::get('/categories', [App\Http\Controllers\Admin\CategoryAdminController::class, 'index'])->name('categories');
-});
+    Route::delete('/produits/{product}', [ProductAdminController::class, 'destroy'])->name('products.destroy');
+    });
+
+;
+
 
 // Auth Breeze
 Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-Route::get('/produits/create', [ProductAdminController::class, 'create'])->name('products.create');
-Route::post('/produits', [ProductAdminController::class, 'store'])->name('products.store');
-Route::delete('/admin/produits/{product}', [ProductAdminController::class, 'destroy'])->name('admin.products.destroy');
+
 
 require __DIR__.'/auth.php';

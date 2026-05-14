@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $fillable = [
     'reference', 'libelle', 'marque', 'description', 'category_id', 
-    'image', 'datasheet', 'topologie', 'puissance', 'rendement', 'configuration'
+    'image', 'datasheet', 'topologie', 'puissance', 'rendement', 'configuration','featured',
 ];
 
     public function category()

@@ -6,7 +6,12 @@
     <link rel="icon" type="image/png" href="{{ asset('images/logoo.png') }}" class="h-30 w-auto">
     <title>@yield('title', 'PowerCity - Global Energy Store')</title>
     <meta name="description" content="@yield('description', 'PowerCity - Votre partenaire expert en énergie électrique.')">
-    
+    <style>
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    </style>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -41,23 +46,11 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-{{-- TOPBAR --}}
-<div style="background:#0d2b45" class="text-white text-xs py-2">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <div class="flex items-center gap-5">
-            <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3 h-3"></i> +212 522234448</span>
-            <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3 h-3"></i> contact@powercity.ma</span>
-        </div>
-        <div class="flex items-center gap-5">
-            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3 h-3"></i> Casablanca, Maroc</span>
-            <span class="flex items-center gap-1.5" style="color:#4caf50"><i data-lucide="clock" class="w-3 h-3"></i> Lun–Ven 8h–18h</span>
-        </div>
-    </div>
-</div>
+
 
 {{-- NAVBAR --}}
 <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="max-w-9xl mx-auto px-4">
         <div class="flex items-center justify-between h-30">
 
             {{-- Logo --}}
@@ -70,19 +63,20 @@
             </a>
 
             {{-- Search Bar --}}
-            <form action="{{ route('products.search') }}" method="GET" class="hidden md:flex flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <input type="text" name="q" value="{{ request('q') }}"
-                           placeholder="Rechercher un produit, une référence..."
-                           class="w-full pl-4 pr-12 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2">
-                    <button type="submit" class="absolute right-1 top-1 text-white rounded-full p-1.5 transition" style="background:#0a5c8a">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </form>
+<form action="{{ route('products.search') }}" method="GET" class="hidden md:flex flex-1 max-w-md mx-8">
+    <div class="relative w-full">
+        <input type="text" name="q" value="{{ request('q') }}"
+               placeholder="Rechercher un produit, un document ou plus encore"
+               class="w-full pl-4 pr-12 py-2.5 text-sm focus:outline-none focus:ring-2"
+               style="border: 1.5px solid #d1d5db; border-radius: 6px;">
+        <button type="submit" class="absolute right-1 top-1 text-white p-1.5 transition" style="background:#0a5c8a; border-radius:5px;">
+            <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+    </div>
+</form>
 
             {{-- Nav Links --}}
-            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <div class="hidden md:flex items-center gap-6 text-base font-medium">
                 <a href="{{ route('home') }}" class="nav-link text-gray-600 hover:text-primary transition pb-1 {{ request()->routeIs('home') ? 'active' : '' }}">
                     Accueil
                 </a>
@@ -95,93 +89,95 @@
                     </button>
  
                     {{-- Dropdown --}}
-                    <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[700px] bg-white rounded-2xl shadow-2xl border border-gray-100 z-50">
-                        <div class="p-6">
-                            <div class="grid grid-cols-3 gap-6">
- 
-                                {{-- Colonne 1 : Eaton --}}
-                                <div>
-                                    <div class="mb-4 pb-3 border-b border-gray-100">
-                                        <img src="{{ asset('images/marques/eaton.png') }}"
-                                             alt="Eaton" class="h-10 w-auto object-contain">
-                                    </div>
-                                    <ul class="space-y-2">
-                                        <li><a href="{{ route('categories.show', 1) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Onduleurs UPS
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'PDU']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> PDU
-                                        </a></li>
-                                        <li><a href="{{ route('categories.show', 5) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Automatisme
-                                        </a></li>
-                                        <li><a href="{{ route('categories.show', 3) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Protection électrique
-                                        </a></li>
-                                        <li><a href="{{ route('categories.show', 6) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Distribution
-                                        </a></li>
-                                    </ul>
-                                </div>
- 
-                                {{-- Colonne 2 : Batteries --}}
-                                <div>
-                                    <div class="mb-4 pb-3 border-b border-gray-100 flex items-center gap-3">
-                                        <img src="{{ asset('images/marques/yuasa.png') }}"
-                                             alt="Yuasa" class="h-10 w-auto object-contain">
-                                        <img src="{{ asset('images/marques/csb.png') }}"
-                                             alt="CSB" class="h-10 w-auto object-contain">
-                                    </div>
-                                    <ul class="space-y-2">
-                                        <li><a href="{{ route('products.index', ['q' => 'Yuasa']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Yuasa
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'CSB']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> CSB
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'ENERSYS']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> EnerSys
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'OPZS']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> OPZS
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'Batterie']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Toutes les batteries
-                                        </a></li>
-                                    </ul>
-                                </div>
- 
-                                {{-- Colonne 3 : Autres produits --}}
-                                <div>
-                                    <div class="mb-4 pb-3 border-b border-gray-100">
-                                        <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a">🔌 Autres produits</span>
-                                    </div>
-                                    <ul class="space-y-2">
-                                        <li><a href="{{ route('categories.show', 2) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Câbles
-                                        </a></li>
-                                        <li><a href="{{ route('categories.show', 4) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Appareillage
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'Luminaire']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Luminaires
-                                        </a></li>
-                                        <li><a href="{{ route('products.index', ['q' => 'Variateur']) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                                            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Variateurs
-                                        </a></li>
-                                        <li>
-                                            <a href="{{ route('products.index') }}"
-                                               class="text-xs font-bold text-white px-3 py-1.5 rounded-lg flex items-center gap-1 mt-2 transition"
-                                               style="background:#4caf50">
-                                                <i data-lucide="package" class="w-3 h-3"></i> Tout le catalogue →
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
- 
-                            </div>
-                        </div>
-                    </div>
+<div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[1000px] bg-white rounded-2xl shadow-2xl border border-gray-100 z-50">
+    <div class="p-6">
+        <div class="grid grid-cols-3 gap-6">
+{{-- Colonne 1 : Onduleurs --}}
+<div>
+    {{-- Logo Eaton --}}
+    <div class="mb-4 pb-3 border-b border-gray-100">
+    <a href="{{ route('products.index', ['marque' => 'Eaton']) }}">
+        <img src="{{ asset('images/marques/eaton.png') }}"
+             alt="Eaton" class="h-8 w-auto object-contain mb-2 hover:opacity-70 transition">
+    </a>
+</div>
+                <ul class="space-y-2">
+                    <li><a href="{{ route('categories.show', 9) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> UPS
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 10) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> PDU
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 11) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> ATS
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 12) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Blocs de secours
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 13) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Disjoncteurs
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 7) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Connecteurs
+                    </a></li>
+                </ul>
+            </div>
+
+            {{-- Colonne 2 : Protection & Câbles --}}
+            <div>
+                <div class="mb-4 pb-3 border-b border-gray-100">
+                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a"> Protection & Câbles</span>
+                </div>
+                <ul class="space-y-2">
+                    <li><a href="{{ route('categories.show', 2) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Câbles
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 8) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Câbles électriques
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 3) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Protection électrique
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 14) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Bornes de Recharge
+                    </a></li>
+                </ul>
+            </div>
+
+            {{-- Colonne 3 : Autres --}}
+            <div>
+                <div class="mb-4 pb-3 border-b border-gray-100">
+                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a"> Autres</span>
+                </div>
+                <ul class="space-y-2">
+                    <li><a href="{{ route('categories.show', 4) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Appareillage
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 15) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteurs
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 16) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Prises
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 5) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Automatisme
+                    </a></li>
+                    <li><a href="{{ route('categories.show', 6) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Distribution
+                    </a></li>
+                    <li>
+                        <a href="{{ route('products.index') }}"
+                           class="text-xs font-bold text-white px-3 py-1.5 rounded-lg flex items-center gap-1 mt-2 transition"
+                           style="background:#4caf50">
+                             Tout le catalogue →
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
                 </div>
  
                 <a href="{{ route('about') }}" class="nav-link text-gray-600 hover:text-primary transition pb-1 {{ request()->routeIs('about') ? 'active' : '' }}">
@@ -206,7 +202,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/>
     </svg>
-    Sign In 
+    Login 
 </a>
 @endauth
             </div>
