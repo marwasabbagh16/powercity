@@ -58,12 +58,14 @@ class ProductController extends Controller
 
     public function search(Request $request)
 {
+    $q = $request->q;
     $categories = Category::all();
     $marques = Product::whereNotNull('marque')->distinct()->pluck('marque')->sort()->values();
     
-    $products = Product::where('libelle', 'LIKE', '%' . $request->q . '%')
-        ->orWhere('description', 'LIKE', '%' . $request->q . '%')
-        ->orWhere('reference', 'LIKE', '%' . $request->q . '%')
+    $products = Product::where('libelle', 'LIKE', '%' . $q . '%')
+        ->orWhere('description', 'LIKE', '%' . $q . '%')
+        ->orWhere('reference', 'LIKE', '%' . $q . '%')
+        ->orWhere('marque', 'LIKE', '%' . $q . '%')
         ->with('category')
         ->paginate(16)
         ->withQueryString();

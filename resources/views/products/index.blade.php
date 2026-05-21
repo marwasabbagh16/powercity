@@ -47,13 +47,15 @@
 
     <p class="text-green-600 font-semibold">CATALOGUE</p>
 <h2 class="text-3xl font-bold">
-    @if(request('marque') || request('category'))
-        Produits
-        @if(request('marque')) {{ request('marque') }} @endif
-        @if($categoryName) — {{ $categoryName }} @endif
-    @else
-        Tous nos produits
-    @endif
+    @if(request('q'))
+    Résultats pour "{{ request('q') }}"
+@elseif(request('marque') || request('category'))
+    Produits
+    @if(request('marque')) {{ request('marque') }} @endif
+    @if($categoryName) — {{ $categoryName }} @endif
+@else
+    Tous nos produits
+@endif
 </h2>
 
     @if($products->isEmpty())
