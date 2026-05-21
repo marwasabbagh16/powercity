@@ -57,13 +57,17 @@
 </h2>
 
     @if($products->isEmpty())
-    <div class="bg-white rounded-2xl border border-gray-100 p-16 text-center">
-        <span style="font-size:60px; opacity:0.1">📦</span>
-        <h3 class="font-semibold text-gray-500 mt-4">Aucun produit trouvé</h3>
-        <a href="{{ route('products.index') }}" class="text-sm mt-2 inline-block hover:underline" style="color:#0a5c8a">
-            Voir tous les produits
-        </a>
-    </div>
+<div class="text-center py-20">
+    <i data-lucide="search-x" class="w-16 h-16 mx-auto mb-4" style="color:#d1d5db"></i>
+    <h3 class="text-xl font-bold text-gray-400">Aucun produit trouvé</h3>
+    <p class="text-gray-400 text-sm mt-2">Essayez avec d'autres mots clés ou parcourez notre catalogue</p>
+    <a href="{{ route('products.index') }}" 
+       class="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-xl text-white text-sm font-semibold transition"
+       style="background:#0a5c8a">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Voir tous les produits
+    </a>
+</div>
     @else
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @foreach($products as $product)

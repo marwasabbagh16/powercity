@@ -57,16 +57,29 @@ class ProductController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $categories = Category::all();
-        $marques = Product::whereNotNull('marque')->distinct()->pluck('marque')->sort()->values();
-        $products = Product::search($request->q)
-            ->with('category')
-            ->paginate(16)
-            ->withQueryString();
+{
+    $categories = Category::all();
+    $marques = Product::whereNotNull('marque')->distinct()->pluck('marque')->sort()->values();
+    
+    $products = Product::where('libelle', 'LIKE', '%' . $request->q . '%')
+        ->orWhere('description', 'LIKE', '%' . $request->q . '%')
+        ->orWhere('reference', 'LIKE', '%' . $request->q . '%')
+        ->with('category')
+        ->paginate(16)
+        ->withQueryString();
 
-        return view('products.index', compact('products', 'categories', 'marques'));
-    }
+    $categoriesAvecMarques = Product::whereNotNull('marque')
+        ->whereNotNull('category_id')
+        ->select('category_id', 'marque')
+        ->distinct()
+        ->get()
+        ->groupBy('category_id')
+        ->map(fn($items) => $items->pluck('marque')->unique()->values());
+
+    $categoryName = null;
+
+    return view('products.index', compact('products', 'categories', 'marques', 'categoriesAvecMarques', 'categoryName'));
+}
 
     public function categoriesByMarque(Request $request)
     {
