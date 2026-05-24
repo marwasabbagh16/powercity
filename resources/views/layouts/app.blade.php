@@ -88,84 +88,82 @@
                         <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </button>
  
-                   {{-- Dropdown --}}
+                    {{-- Dropdown --}}
 <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[1000px] bg-white rounded-2xl shadow-2xl border border-gray-100 z-50">
     <div class="p-6">
         <div class="grid grid-cols-3 gap-6">
+{{-- Colonne 1 : EATON avec scroll --}}
+<div>
+    <div class="mb-4 pb-3 border-b border-gray-100">
+        <a href="{{ route('products.index', ['marque' => 'Eaton']) }}">
+            <img src="{{ asset('images/marques/eaton.png') }}"
+                 alt="Eaton" class="h-8 w-auto object-contain mb-2 hover:opacity-70 transition">
+        </a>
+    </div>
+    {{-- Liste avec scroll --}}
+    <ul class="space-y-2 max-h-64 overflow-y-auto pr-2">
+        <li><a href="{{ route('categories.show', 9) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> UPS
+        </a></li>
+        <li><a href="{{ route('categories.show', 12) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
+            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> BAES
+        </a></li>
+        {{-- Protection électrique avec sous-menu vers le bas --}}
+<li class="relative group/sub">
+    <div class="text-sm text-gray-600 hover:text-primary flex items-center justify-between gap-2 transition cursor-pointer py-1">
+        <span class="flex items-center gap-2">
+            <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i>
+            Protection électrique
+        </span>
+        <i data-lucide="chevron-down" class="w-3 h-3 text-gray-400"></i>
+    </div>
 
-            {{-- Colonne 1 : EATON --}}
+    {{-- Sous-menu vers le bas avec scroll --}}
+    <div class="overflow-hidden max-h-0 group-hover/sub:max-h-96 transition-all duration-300 overflow-y-auto">
+        <ul class="pl-4 pt-1 space-y-1 border-l-2 ml-2" style="border-color:#4caf50">
+            <li><a href="{{ route('categories.show', 17) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Disjoncteur modulaire
+            </a></li>
+            <li><a href="{{ route('categories.show', 18) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur modulaire
+            </a></li>
+            <li><a href="{{ route('categories.show', 19) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur diff.
+            </a></li>
+            <li><a href="{{ route('categories.show', 20) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Contacteurs modulaires
+            </a></li>
+            <li><a href="{{ route('categories.show', 21) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Minutrie sur rail
+            </a></li>
+            <li><a href="{{ route('categories.show', 22) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Télérupteur
+            </a></li>
+            <li><a href="{{ route('categories.show', 23) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Disjoncteur compact
+            </a></li>
+            <li><a href="{{ route('categories.show', 24) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur compact
+            </a></li>
+            <li><a href="{{ route('categories.show', 25) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Contacteurs puissance
+            </a></li>
+            <li><a href="{{ route('categories.show', 26) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Protection moteur
+            </a></li>
+            <li><a href="{{ route('categories.show', 27) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Parafoudre
+            </a></li>
+            <li><a href="{{ route('categories.show', 28) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
+                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Coffret modulaire
+            </a></li>
+        </ul>
+    </div>
+</li>
+{{-- Colonne 2 : Protection & Câbles --}}
             <div>
                 <div class="mb-4 pb-3 border-b border-gray-100">
-                    <a href="{{ route('products.index', ['marque' => 'Eaton']) }}">
-                        <img src="{{ asset('images/marques/eaton.png') }}"
-                             alt="Eaton" class="h-8 w-auto object-contain mb-2 hover:opacity-70 transition">
-                    </a>
-                </div>
-                <ul class="space-y-2">
-                    <li><a href="{{ route('categories.show', 9) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> UPS
-                    </a></li>
-                    <li><a href="{{ route('categories.show', 12) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
-                        <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> BAES
-                    </a></li>
-
-                    {{-- Protection électrique avec sous-menu --}}
-                    <li class="relative group/sub">
-                        <div class="text-sm text-gray-600 hover:text-primary flex items-center justify-between gap-2 transition cursor-pointer py-1">
-                            <span class="flex items-center gap-2">
-                                <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i>
-                                Protection électrique
-                            </span>
-                            <i data-lucide="chevron-down" class="w-3 h-3 text-gray-400"></i>
-                        </div>
-                        <div class="overflow-hidden max-h-0 group-hover/sub:max-h-96 transition-all duration-300 overflow-y-auto">
-                            <ul class="pl-4 pt-1 space-y-1 border-l-2 ml-2" style="border-color:#4caf50">
-                                <li><a href="{{ route('categories.show', 17) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Disjoncteur modulaire
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 18) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur modulaire
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 19) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur diff.
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 20) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Contacteurs modulaires
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 21) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Minutrie sur rail
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 22) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Télérupteur
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 23) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Disjoncteur compact
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 24) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Interrupteur compact
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 25) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Contacteurs puissance
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 26) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Protection moteur
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 27) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Parafoudre
-                                </a></li>
-                                <li><a href="{{ route('categories.show', 28) }}" class="text-sm text-gray-500 hover:text-primary flex items-center gap-2 transition py-1">
-                                    <i data-lucide="chevron-right" class="w-3 h-3" style="color:#4caf50"></i> Coffret modulaire
-                                </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            {{-- Colonne 2 : Protection & Câbles --}}
-            <div>
-                <div class="mb-4 pb-3 border-b border-gray-100">
-                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a">Protection & Câbles</span>
+                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a"> Protection & Câbles</span>
                 </div>
                 <ul class="space-y-2">
                     <li><a href="{{ route('categories.show', 64) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
@@ -182,11 +180,10 @@
                     </a></li>
                 </ul>
             </div>
-
             {{-- Colonne 3 : Autres --}}
             <div>
                 <div class="mb-4 pb-3 border-b border-gray-100">
-                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a">Autres</span>
+                    <span class="text-xs font-black uppercase tracking-widest" style="color:#0a5c8a"> Autres</span>
                 </div>
                 <ul class="space-y-2">
                     <li><a href="{{ route('categories.show', 68) }}" class="text-sm text-gray-600 hover:text-primary flex items-center gap-2 transition">
@@ -208,7 +205,7 @@
                         <a href="{{ route('products.index') }}"
                            class="text-xs font-bold text-white px-3 py-1.5 rounded-lg flex items-center gap-1 mt-2 transition"
                            style="background:#4caf50">
-                            Tout le catalogue →
+                             Tout le catalogue →
                         </a>
                     </li>
                 </ul>
@@ -217,6 +214,7 @@
         </div>
     </div>
 </div>
+                </div>
  
                 <a href="{{ route('about') }}" class="nav-link text-gray-600 hover:text-primary transition pb-1 {{ request()->routeIs('about') ? 'active' : '' }}">
                     À propos
