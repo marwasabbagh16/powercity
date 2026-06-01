@@ -52,13 +52,13 @@
 <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
     <div class="max-w-9xl mx-auto px-4">
  
-        {{-- ✅ CORRECTION 1 : h-30 → h-16 pour une navbar compacte et lisible --}}
-        <div class="flex items-center justify-between h-16">
+        
+        <div class="flex items-center justify-between h-30">
  
             {{-- Logo --}}
             <a href="{{ route('home') }}" class="flex items-center">
-                {{-- ✅ CORRECTION 2 : h-30 → h-10 pour le logo --}}
-                <img src="{{ asset('images/logo.png') }}" alt="PowerCity" class="h-10 w-auto"
+               
+                <img src="{{ asset('images/logo.png') }}" alt="PowerCity" class="h-30 w-auto"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <span style="display:none" class="items-center gap-1 text-xl font-black">
                     <span style="color:#0d2b45">POWER</span><span style="color:#4caf50">CITY</span>
@@ -78,10 +78,10 @@
                 </div>
             </form>
  
-            {{-- ✅ CORRECTION 3 : gap-6 text-base → gap-2 text-sm pour tout serrer sur une ligne --}}
+            
             <div class="hidden md:flex items-center gap-2 text-sm font-medium">
  
-                {{-- ✅ CORRECTION 4 : padding + hover bg sur les liens texte --}}
+               
                 <a href="{{ route('home') }}"
                    class="nav-link text-gray-600 hover:text-primary transition px-3 py-2 rounded-lg hover:bg-gray-50 {{ request()->routeIs('home') ? 'active' : '' }}">
                     Accueil
@@ -225,7 +225,7 @@
                     </div>
                 </div>
  
-                {{-- ✅ CORRECTION 4 : padding + hover bg sur À propos --}}
+                
                 <a href="{{ route('about') }}"
                    class="nav-link text-gray-600 hover:text-primary transition px-3 py-2 rounded-lg hover:bg-gray-50 {{ request()->routeIs('about') ? 'active' : '' }}">
                     À propos
@@ -234,14 +234,14 @@
                 {{-- Séparateur visuel --}}
                 <div class="w-px h-5 bg-gray-200 mx-1"></div>
  
-                {{-- ✅ CORRECTION 5 : bouton Contact — text-sm, padding uniforme --}}
+                
                 <a href="{{ route('contact') }}"
                    class="text-white font-semibold px-4 py-2 rounded-lg text-sm transition hover:opacity-90"
                    style="background:#4caf50">
                     Contact
                 </a>
  
-                {{-- ✅ CORRECTION 6 : bouton Login — text-sm, même hauteur que Contact --}}
+                
                 @auth
                 <a href="{{ route('admin.dashboard') }}"
                    class="flex items-center gap-2 text-white font-semibold px-4 py-2 rounded-lg text-sm transition hover:opacity-90"
