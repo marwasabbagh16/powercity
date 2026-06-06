@@ -1,59 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PowerCity — Global Energy Store 🔌
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Site web vitrine professionnel pour l'entreprise **PowerCity**, spécialisée dans la distribution de solutions électriques et industrielles au Maroc.
 
-## About Laravel
+🌐 **Site déployé** : https://powercity-production.up.railway.app
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Présentation du projet
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ce projet a été réalisé dans le cadre d'un **Projet de Fin d'Études (PFE)** pour l'obtention de la Licence Sciences et Techniques en Systèmes d'Information et Transformation Digitale (LST/SITD) à la **Faculté des Sciences et Techniques de Settat — Université Hassan 1er**.
 
-## Learning Laravel
+**Réalisé par** : Marwa Sabbagh  
+**Encadrant académique** : Pr. El Mostafa MAKROUM  
+**Année universitaire** : 2025–2026
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Stack technique
 
-## Laravel Sponsors
+| Technologie | Version | Rôle |
+|---|---|---|
+| Laravel | 12 | Framework PHP (MVC) |
+| PHP | 8.2 | Langage serveur |
+| MySQL | 9.4 | Base de données |
+| Tailwind CSS | 3 | Design responsive |
+| Alpine.js | 3 | Interactivité frontend |
+| Laravel Breeze | — | Authentification sécurisée |
+| Railway | — | Déploiement en production |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Fonctionnalités
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Partie publique (Visiteurs)
+- 📦 Catalogue de produits organisé par catégories (UPS, PDU, ATS, Câbles, Disjoncteurs...)
+- 🔍 Recherche avancée par nom de produit ou catégorie
+- 📄 Fiche technique détaillée avec datasheet téléchargeable pour chaque produit
+- 📝 Formulaire de demande de devis en ligne
+- 📞 Page Contact avec coordonnées complètes
+- ℹ️ Page À propos de l'entreprise
 
-## Contributing
+### Panneau d'administration (Admin)
+- 📊 Tableau de bord avec statistiques générales
+- ➕ Gestion complète des produits (CRUD)
+- 🗂️ Gestion des catégories
+- 📋 Traitement des demandes de devis (Pending / Approved / Rejected)
+- 👥 Liste des clients
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🚀 Installation locale
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prérequis
+- PHP 8.2+
+- Composer
+- Node.js & npm
+- MySQL (via XAMPP ou autre)
 
-## Security Vulnerabilities
+### Étapes
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/marwasabbagh16/powercity.git
+cd powercity
 
-## License
+# 2. Installer les dépendances PHP
+composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 3. Installer les dépendances JavaScript
+npm install
+
+# 4. Copier le fichier d'environnement
+cp .env.example .env
+
+# 5. Générer la clé d'application
+php artisan key:generate
+
+# 6. Configurer la base de données dans .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=powercity
+DB_USERNAME=root
+DB_PASSWORD=
+
+# 7. Exécuter les migrations
+php artisan migrate
+
+# 8. Compiler les assets
+npm run dev
+
+# 9. Lancer le serveur
+php artisan serve
+```
+
+Le site sera accessible sur : http://localhost:8000
+
+---
+
+## 🗂️ Structure du projet
+
+powercity/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── HomeController.php
+│   │   ├── ProductController.php
+│   │   ├── DevisController.php
+│   │   └── Admin/
+│   │       ├── DashboardController.php
+│   │       ├── ProductController.php
+│   │       └── DevisController.php
+│   └── Models/
+│       ├── Product.php
+│       ├── Category.php
+│       ├── Devis.php
+│       └── User.php
+├── resources/views/
+│   ├── layouts/
+│   ├── produits/
+│   ├── admin/
+│   └── contact.blade.php
+├── routes/
+│   └── web.php
+└── database/migrations/
+
+---
+
+## 🔐 Accès administration
+
+L'accès au panneau d'administration se fait via l'URL **/login** avec les identifiants fournis par l'administrateur.
+
+---
+
+## 📸 Aperçu
+
+![Page d'accueil PowerCity](https://powercity-production.up.railway.app)
+
+---
+
+## 📄 Licence
+
+Projet académique — FST Settat, Université Hassan 1er — 2025/2026
