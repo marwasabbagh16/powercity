@@ -100,6 +100,7 @@ Le site sera accessible sur : http://localhost:8000
 
 ## 🗂️ Structure du projet
 
+```
 powercity/
 ├── app/
 │   ├── Http/Controllers/
@@ -123,6 +124,7 @@ powercity/
 ├── routes/
 │   └── web.php
 └── database/migrations/
+```
 
 ---
 
@@ -134,7 +136,7 @@ L'accès au panneau d'administration se fait via l'URL **/login** avec les ident
 
 ## 📸 Aperçu
 
-![Page d'accueil PowerCity](https://powercity-production.up.railway.app)
+🌐 Site en ligne : https://powercity-production.up.railway.app
 
 ---
 
